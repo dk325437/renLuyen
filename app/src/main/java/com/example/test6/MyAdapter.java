@@ -14,13 +14,14 @@ public class MyAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     private List articleList;
     LayoutInflater mInflater;
 
+
     public MyAdapter(Context context,List list){
         mInflater =LayoutInflater.from(context);
         this.articleList = list;
     }
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.country_layout, parent, false);
+        View view = mInflater.inflate(R.layout.article_layout, parent, false);
         ArticleViewHolder holder = new ArticleViewHolder(view, this);
         return holder;
     }
@@ -36,5 +37,8 @@ public class MyAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     @Override
     public int getItemCount() { return articleList.size();
+    }
+    public Article getArticle(int position) {
+        return (Article) articleList.get(position);
     }
 }

@@ -2,7 +2,7 @@ package com.example.test6;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button btLoad;
     List articleList = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,35 +30,46 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         articleList.add(new Article(
-                "Bài báo 1",
-                "Nội dung bài báo 1",
-                R.drawable.ic_launcher_foreground,
-                1
+                "Khám phá những món ăn hấp dẫn",
+                "Ẩm thực là một phần thú vị trong mỗi chuyến đi và trong cuộc sống hằng ngày. \n" +
+                        "Từ pizza, mì Ý đến các món ăn được trình bày đẹp mắt, mỗi món ăn đều mang đến \n" +
+                        "một trải nghiệm riêng về hương vị và cách thưởng thức.\n" +
+                        "\n" +
+                        "Bài viết giới thiệu một số món ăn phổ biến và hấp dẫn, phù hợp cho những người \n" +
+                        "yêu thích khám phá ẩm thực.",
+                R.drawable.mon_an,
+                0
         ));
 
         articleList.add(new Article(
-                "Bài báo 2",
-                "Nội dung bài báo 2",
-                R.drawable.ic_launcher_foreground,
-                2
+                "Khám phá không gian Đại học Kinh tế Thành phố Hồ Chí Minh",
+                "Đại học Kinh tế Thành phố Hồ Chí Minh là một trong những địa điểm quen thuộc \n" +
+                        "đối với sinh viên và những người quan tâm đến môi trường giáo dục. Không gian \n" +
+                        "trường được thiết kế hiện đại, kết hợp giữa các công trình và khu vực cây xanh.\n" +
+                        "\n" +
+                        "Bài viết giới thiệu hình ảnh và không gian của trường, qua đó mang đến một góc \n" +
+                        "nhìn tổng quan về môi trường học tập.",
+                R.drawable.ueh,
+                0
         ));
 
         articleList.add(new Article(
-                "Bài báo 3",
-                "Nội dung bài báo 3",
-                R.drawable.ic_launcher_foreground,
-                3
+                "Vẻ đẹp của Vịnh Hạ Long",
+                "Vịnh Hạ Long nổi bật với hệ thống đảo đá và mặt nước rộng lớn, tạo nên một \n" +
+                        "khung cảnh thiên nhiên đặc trưng. Đây là một điểm đến được nhiều người quan tâm \n" +
+                        "khi tìm kiếm những địa danh có cảnh quan đẹp tại Việt Nam.\n" +
+                        "\n" +
+                        "Bài viết giới thiệu vẻ đẹp của Vịnh Hạ Long và những nét đặc trưng tạo nên sức \n" +
+                        "hấp dẫn của địa danh này.",
+                R.drawable.ha_long,
+                0
         ));
 
         recyclerView = findViewById(R.id.recyclerView);
-        btLoad = findViewById(R.id.btLoad);
-      btLoad.setOnClickListener(v -> {
-              MyAdapter myAdapter = new MyAdapter(v.getContext(),articleList);
-              recyclerView.setLayoutManager(new LinearLayoutManager(this));
-              recyclerView.setAdapter(myAdapter);
-      }
-      );
 
+        MyAdapter myAdapter = new MyAdapter(this, articleList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myAdapter);
 
     }
 }

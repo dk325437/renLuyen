@@ -4,7 +4,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
-
+import android.content.Intent;
+import android.app.Activity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ArticleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -13,6 +14,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView tcontent;
     public TextView tviews;
     public ImageView imgCover;
+
     public ArticleViewHolder(View item, MyAdapter adapter) {
         super(item);
         this.madapter = adapter;
@@ -25,7 +27,21 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder implements View.O
 
     @Override
     public void onClick(View v) {
-        String msg = ttitle.getText() + " | " + tviews.getText();
-        Toast.makeText(v.getContext(), msg, Toast.LENGTH_SHORT).show();
+        int position = getAdapterPosition();
+
+        if (position != RecyclerView.NO_POSITION) {
+            Article article = madapter.getArticle(position);
+
+            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+            article.views++;
+            madapter.notifyItemChanged(position);
+
+            intent.putExtra("title", article.title);
+            intent.putExtra("content", article.content);
+            intent.putExtra("views", article.views);
+            intent.putExtra("imgCover", article.imgCover);
+
+            v.getContext().startActivity(intent);
+        }
     }
 }
