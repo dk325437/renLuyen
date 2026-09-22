@@ -10,29 +10,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<CountryViewHolder> {
-    private List countryList;
+public class MyAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
+    private List articleList;
     LayoutInflater mInflater;
 
     public MyAdapter(Context context,List list){
         mInflater =LayoutInflater.from(context);
-        this.countryList = list;
+        this.articleList = list;
     }
     @Override
-    public CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.country_layout, parent, false);
-        CountryViewHolder holder = new CountryViewHolder(view, this);
+        ArticleViewHolder holder = new ArticleViewHolder(view, this);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {
-    String country =  (String) countryList.get(position);
-    holder.tid.setText((position+1)+"");
-    holder.tcountry.setText(country);
+    public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
+        Article article = (Article) articleList.get(position);
+        holder.ttitle.setText(article.title);
+        holder.tcontent.setText(article.content);
+        holder.tviews.setText("Views: " + article.views);
+        holder.imgCover.setImageResource(article.imgCover);
     }
 
     @Override
-    public int getItemCount() { return countryList.size();
+    public int getItemCount() { return articleList.size();
     }
 }

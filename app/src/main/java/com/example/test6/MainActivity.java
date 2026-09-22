@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Button btLoad;
-    List countryList = new ArrayList();
+    List articleList = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +30,31 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        countryList.add("VietNam");
-        countryList.add("US");
-        countryList.add("China");
-        countryList.add("Japan");
-        countryList.add("Korea");
-        countryList.add("ThaiLand");
+        articleList.add(new Article(
+                "Bài báo 1",
+                "Nội dung bài báo 1",
+                R.drawable.ic_launcher_foreground,
+                1
+        ));
+
+        articleList.add(new Article(
+                "Bài báo 2",
+                "Nội dung bài báo 2",
+                R.drawable.ic_launcher_foreground,
+                2
+        ));
+
+        articleList.add(new Article(
+                "Bài báo 3",
+                "Nội dung bài báo 3",
+                R.drawable.ic_launcher_foreground,
+                3
+        ));
 
         recyclerView = findViewById(R.id.recyclerView);
         btLoad = findViewById(R.id.btLoad);
       btLoad.setOnClickListener(v -> {
-              MyAdapter myAdapter = new MyAdapter(v.getContext(),countryList);
+              MyAdapter myAdapter = new MyAdapter(v.getContext(),articleList);
               recyclerView.setLayoutManager(new LinearLayoutManager(this));
               recyclerView.setAdapter(myAdapter);
       }
